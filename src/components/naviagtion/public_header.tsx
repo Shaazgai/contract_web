@@ -5,8 +5,8 @@ import { Button } from '@mantine/core';
 export const PublicHeader = () => {
   return (
     <>
-      <header className="bg-transparent border border-transparent border-b">
-        <nav className="mx-auto flex max-w-7xl items-center justify-between lg:px-8">
+      <header className="bg-transparent border border-transparent border-b h-[12vh]">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between lg:px-3">
           <div className="flex lg:flex-1">
             <Link href="#">
               <Image

@@ -9,7 +9,7 @@ const Form = () => {
   return (
     <>
       <section className="overflow-hidden">
-        <div className="flex justify-around items-center bg-black h-screen text-primary pl-40 pr-40">
+        <div className="flex justify-around items-center bg-[#0c0c0c] h-screen text-primary pl-40 pr-40">
           <div>
             <Image
               src="/img/media/instagram.jpg"
@@ -24,7 +24,7 @@ const Form = () => {
               Approved
             </button>
           </div>
-          <div className="border border-primary bg-black rounded-3xl w-[450px] h-[85vh] p-4">
+          <div className="border border-[#1b1b1b] bg-[#0c0c0c] rounded-3xl w-[450px] h-[85vh] p-4">
             <h1 className="text-white text-center font-semibold text-[24px]">
               Мэдээлэл бүртгүүлэх
             </h1>
@@ -36,23 +36,23 @@ const Form = () => {
                 <span>Овог нэр</span>
                 <input
                   type="text"
-                  className="rounded-2xl h-[4vh] w-[190px] text-black border-transparent mt-2 mb-2"
+                  className="rounded-2xl h-[4vh] w-[190px] p-2 outline-none bg-[#161616] text-[#727272] border-transparent mt-2 mb-2"
                 />
                 <span>Регистр</span>
                 <input
                   type="text"
-                  className="rounded-2xl h-[4vh] w-[190px] text-black border-transparent mt-2 mb-2"
+                  className="rounded-2xl h-[4vh] w-[190px] p-2 outline-none bg-[#161616] text-[#727272] border-transparent mt-2 mb-2"
                 />
                 <span>И-мэйл</span>
                 <input
                   type="email"
-                  className="rounded-2xl h-[4vh] w-[190px] text-black border-transparen mt-2 mb-2 peer..."
+                  className="rounded-2xl h-[4vh] w-[190px] p-2 outline-none bg-[#161616] text-[#727272] border-transparen mt-2 mb-2 peer..."
                 />
              
                 <span>Утасны дугаар</span>
                 <input
                   type="tel"
-                  className="rounded-2xl h-[4vh] w-[190px] text-black border-transparent mt-2 mb-3"
+                  className="rounded-2xl h-[4vh] w-[190px] p-2 outline-none bg-[#161616] text-[#727272] border-transparent mt-2 mb-3"
                 />
               </div>
               <div className="mt-7 border-l-2 border-white h-[42vh]"></div>
@@ -63,22 +63,22 @@ const Form = () => {
                 <span>Овог нэр</span>
                 <input
                   type="text"
-                  className="rounded-2xl h-[4vh] w-[190px] text-black border-transparent mt-2 mb-2"
+                  className="rounded-2xl h-[4vh] w-[190px] p-2 outline-none bg-[#161616] text-[#727272] border-transparent mt-2 mb-2"
                 />
                 <span>Регистр</span>
                 <input
                   type="text"
-                  className="rounded-2xl h-[4vh] w-[190px] text-black border-transparent mt-2 mb-2"
+                  className="rounded-2xl h-[4vh] w-[190px] p-2 outline-none bg-[#161616] text-[#727272] border-transparent mt-2 mb-2"
                 />
                 <span>И-мэйл</span>
                 <input
                   type="text"
-                  className="rounded-2xl h-[4vh] w-[190px] text-black border-transparen mt-2 mb-2"
+                  className="rounded-2xl h-[4vh] w-[190px] p-2 outline-none bg-[#161616] text-[#727272] border-transparen mt-2 mb-2"
                 />
                 <span>Утасны дугаар</span>
                 <input
                   type="text"
-                  className="rounded-2xl h-[4vh] w-[190px] text-black border-transparent mt-2 mb-3"
+                  className="rounded-2xl h-[4vh] w-[190px] p-2 outline-none bg-[#161616] text-[#727272] border-transparent mt-2 mb-3"
                 />
               </div>
             </div>
@@ -92,7 +92,7 @@ const Form = () => {
                   <span>Эхлэх өдөр</span>
                   <input
                     type="date"
-                    className="rounded-xl h-[4vh] w-[190px] text-black border-transparent mt-2 mb-3"
+                    className="rounded-xl h-[4vh] w-[190px] pl-2 pr-2 outline-none bg-[#161616] text-[#727272] border-transparent mt-2 mb-3"
                   />
                 </div>
                 <div>
@@ -100,7 +100,7 @@ const Form = () => {
                   <span>Дуусах өдөр</span>
                   <input
                     type="date"
-                    className="rounded-xl h-[4vh] w-[190px] text-black border-transparent mt-2 mb-3"
+                    className="rounded-xl h-[4vh] w-[190px] pl-2 pr-2   outline-none bg-[#161616] text-[#727272] border-transparent mt-2 mb-3"
                   />
                 </div>
               </div>
