@@ -20,11 +20,15 @@ export interface PartyModel {
 
   }
 export interface ContractModel {
-  contractName: string;
+  _id?: string
+  contractName?: string;
 
-  file: string;
+  file?: string[];
 
   verified: boolean;
+
+  startDate?: string
+  endDate?: string
 
   files: PartyModel[];
 

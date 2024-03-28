@@ -17,33 +17,31 @@ export const loginUser = async (
 ) => {
   const token = cookies().get("token");
 
- 
-    try {
-      const res = await fetch(`${Api.auth}login`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          email: email,
-          profileImg: profileImg,
-          name: name,
-        }),
-      }).then((d) => d.json());
-      console.log(res);
-      if (res) {
-        cookies().delete("next-auth.session-token");
-        cookies().delete("next-auth.csrf-token");
-        cookies().delete("next-auth.callback-url");
-        cookies().set("token", res.token);
-      }
+  try {
+    const res = await fetch(`${Api.auth}login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        email: email,
+        profileImg: profileImg,
+        name: name,
+      }),
+    }).then((d) => d.json());
 
-      return res;
-      // if (!data) {
-      //   window.location.pathname = '/account/check';
-      // }
-    } catch (err) {
-      console.error(err);
+    if (res) {
+      cookies().delete("next-auth.session-token");
+      cookies().delete("next-auth.csrf-token");
+      cookies().delete("next-auth.callback-url");
+      cookies().set("token", res.token);
     }
-  
+
+    return res;
+    // if (!data) {
+    //   window.location.pathname = '/account/check';
+    // }
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 export async function getUser(): Promise<UserModel | null> {
@@ -51,7 +49,7 @@ export async function getUser(): Promise<UserModel | null> {
     const cookie = cookies();
     let token = cookie.get("token");
     let hasCurrent = cookie.has("current");
-    let hasType = cookie.has("type");
+
     if (token?.value != "" && token) {
       let res = await fetch(`${Api.userMe}`, {
         headers: {
@@ -64,7 +62,6 @@ export async function getUser(): Promise<UserModel | null> {
           return null;
         });
       if (!hasCurrent) cookie.set("current", res._id);
-      if (!hasType) cookie.set("type", res.userType);
 
       return res;
     }

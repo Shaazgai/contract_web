@@ -1,7 +1,10 @@
-import { PartyModel } from "@/models/contract.model";
+import { ContractModel, PartyModel } from "@/models/contract.model";
 import React from "react";
 import { ContractUserCard } from "./card";
 import { Button, FileButton, Group, Loader } from "@mantine/core";
+
+import { useAppContext } from "@/app/_context";
+import { usePathname } from "next/navigation";
 import {
   checkEmail,
   checkPhone,
@@ -16,7 +19,13 @@ export const ContractForm = ({
   setSubsciberData,
   files,
   setFiles,
+  data, 
+  setData
 }: {
+
+  data: ContractModel, 
+  setData: React.Dispatch<React.SetStateAction<ContractModel 
+  >>
   files: File[];
   setFiles: React.Dispatch<React.SetStateAction<File[]>>;
   subscriberData: PartyModel;
@@ -24,13 +33,16 @@ export const ContractForm = ({
   executerData: PartyModel;
   setExecuterData: React.Dispatch<React.SetStateAction<PartyModel>>;
 }) => {
+  const { user } = useAppContext();
+  const pathname = usePathname();
+
   return (
     <div className="flex w-full justify-around items-center bg-black text-primary pl-40 pr-40">
       <ContractUserCard
-        url="/img/media/instagram.jpg"
+        url={user?.profileImg ?? "/img/media/instagram.jpg"}
         side="Захиалагч тал"
         approved={true}
-        name="Your name"
+        name={user?.username ?? "Нэр"}
       />
       <div className="border border-primary bg-black rounded-3xl w-full max-w-lg  p-4">
         <h1 className="text-white text-center font-semibold text-[24px]">
@@ -58,16 +70,22 @@ export const ContractForm = ({
               {" "}
               <span>Эхлэх өдөр</span>
               <input
+              onChange={(e) => {
+                setData((prev) => ({...prev, startDate: e.target.value}))
+              }}
                 type="date"
-                className="rounded-xl w-full h-[4vh] w-[190px] text-black border-transparent mt-2 mb-3 px-3"
+                className={`rounded-xl w-full h-[4vh] w-[190px] text-black ${data?.startDate ? 'border-transparent' : 'border-[1px] border-rose-600'} mt-2 mb-3 px-3`}
               />
             </div>
             <div>
               {" "}
               <span>Дуусах өдөр</span>
               <input
+                 onChange={(e) => {
+                  setData((prev) => ({...prev, endDate: e.target.value}))
+                }}
                 type="date"
-                className="rounded-xl w-full h-[4vh] w-[190px] text-black border-transparent mt-2 mb-3 px-3"
+                className={`rounded-xl w-full h-[4vh] w-[190px] text-black ${data?.endDate ? 'border-transparent' : 'border-[1px] border-rose-600'} mt-2 mb-3 px-3`}
               />
             </div>
           </div>
@@ -93,13 +111,14 @@ export const ContractForm = ({
 
           <div
             className={`flex max-w-md w-full gap-2 mt-4 py-3 ${
-              files.length > 0 ? "overflow-x-scroll" : ""
+              files.length > 0 ? "overflow-x-scroll" : "border-[1px] border-rose-600"
             }`}
           >
             {files.length > 0 ? (
               files.map((file, i) => {
                 return (
                   <img
+                  key={i}
                     src={`${URL.createObjectURL(file)}`}
                     className="w-12 h-12 object-cover rounded-xl"
                     alt=""
@@ -117,7 +136,7 @@ export const ContractForm = ({
       <ContractUserCard
         url="/img/media/facebook.jpg"
         side="Гүйцэтгэх тал"
-        approved={false}
+        approved={executerData.verified}
       />
     </div>
   );
@@ -141,7 +160,11 @@ export const InfoForm = ({
         <span>Овог нэр</span>
         <input
           type="text"
-          className="rounded-2xl h-[4vh] w-full text-black border-transparent mt-2 mb-2 px-3"
+          className={`rounded-2xl h-[4vh] w-full text-black ${
+            checkUsername(data.username)
+              ? "border-transparent"
+              : "border-[1px] border-rose-600"
+          } mt-2 mb-2 px-3`}
           onChange={(e) =>
             setData((prev) => ({ ...prev, username: e.target.value }))
           }
@@ -151,7 +174,11 @@ export const InfoForm = ({
         <span>Регистр</span>
         <input
           type="text"
-          className="rounded-2xl h-[4vh] w-full text-black border-transparent mt-2 mb-2 px-3"
+          className={`${
+            checkRegisterNumber(data.registerNumber)
+              ? "border-transparent"
+              : "border-[1px] border-rose-600"
+          } rounded-2xl h-[4vh] w-full text-black mt-2 mb-2 px-3`}
           onChange={(e) =>
             setData((prev) => ({ ...prev, registerNumber: e.target.value }))
           }
@@ -161,7 +188,11 @@ export const InfoForm = ({
         <span>И-мэйл</span>
         <input
           type="text"
-          className="rounded-2xl h-[4vh] w-full text-black border-transparen mt-2 mb-2 px-3"
+          className={`rounded-2xl h-[4vh] w-full text-black ${
+            checkEmail(data.email)
+              ? "border-transparent"
+              : "border-[1px] border-rose-600"
+          } mt-2 mb-2 px-3`}
           onChange={(e) =>
             setData((prev) => ({ ...prev, email: e.target.value }))
           }
@@ -171,12 +202,15 @@ export const InfoForm = ({
         <span>Утасны дугаар</span>
         <input
           type="text"
-          className="rounded-2xl h-[4vh] w-full text-black border-transparent mt-2 mb-3 px-3"
+          className={`${
+            checkPhone(data.phone)
+              ? "border-transparent"
+              : "border-[1px] border-rose-600"
+          } rounded-2xl h-[4vh] w-full text-black  mt-2 mb-3 px-3`}
           onChange={(e) =>
             setData((prev) => ({ ...prev, phone: e.target.value }))
           }
         />
-     
       </div>
     </div>
   );

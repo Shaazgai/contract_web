@@ -29,3 +29,11 @@ export enum Action {
     executer = 'executer',
   }
   
+
+  export enum ContractType {
+    lease = 'lease',
+    performance = 'performance',
+    // Хамтран ажиллах гэрээ
+    partner = 'partner',
+  
+  }
